@@ -18,8 +18,10 @@ COPY entrypoint.sh /fluentd/entrypoint.sh
 ENTRYPOINT ["tini", "--", "/fluentd/entrypoint.sh"]
 
 # copy k8s config
-ADD https://raw.githubusercontent.com/fluent/fluentd-kubernetes-daemonset/master/docker-image/v1.4/debian-elasticsearch/plugins/parser_kubernetes.rb /fluentd/plugins
-ADD https://raw.githubusercontent.com/fluent/fluentd-kubernetes-daemonset/master/docker-image/v1.4/debian-elasticsearch/plugins/parser_multiline_kubernetes.rb /fluentd/plugins
+# ADD https://raw.githubusercontent.com/fluent/fluentd-kubernetes-daemonset/master/docker-image/v1.4/debian-elasticsearch/plugins/parser_kubernetes.rb /fluentd/plugins
+# ADD https://raw.githubusercontent.com/fluent/fluentd-kubernetes-daemonset/master/docker-image/v1.4/debian-elasticsearch/plugins/parser_multiline_kubernetes.rb /fluentd/plugins
+COPY plugins/parser_kubernetes.rb /fluentd/plugins
+COPY plugins/parser_multiline_kubernetes.rb /fluentd/plugins
 
 # list gems here
 COPY Gemfile /fluentd
